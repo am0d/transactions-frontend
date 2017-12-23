@@ -8,7 +8,7 @@ import './index.css';
 const transactions: TransactionsProps = {
   Transactions: [
     new Transaction('Walmart', new Date(), 'Groceries', 137.32),
-    new Transaction('Walmart', new Date(), 'Groceries', 137.32)
+    new Transaction('Pioneer', new Date(), 'Gas', 41.11)
   ]
 };
 
