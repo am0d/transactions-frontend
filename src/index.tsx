@@ -7,13 +7,12 @@ import './index.css';
 
 const transactions: TransactionsProps = {
   Transactions: [
-    new Transaction('Walmart', new Date(), 'Groceries', 137.32),
-    new Transaction('Pioneer', new Date(), 'Gas', 41.11)
+    new Transaction(1, 'Walmart', new Date(), 'Groceries', 137.32),
+    new Transaction(2, 'Pioneer', new Date(), 'Gas', 41.11)
   ]
 };
 
-ReactDOM.render(
-  <App {...transactions} />,
-  document.getElementById('root') as HTMLElement
-);
+ReactDOM.render(<App {...transactions} />, document.getElementById(
+  'root'
+) as HTMLElement);
 registerServiceWorker();

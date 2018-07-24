@@ -22,3 +22,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.transaction {
+  border-bottom: 1px solid lightgray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
