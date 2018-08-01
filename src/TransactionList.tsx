@@ -36,7 +36,9 @@ class TransactionList extends React.Component<
             <div className="col-sm-3">Category</div>
             <div className="col-sm-2">Amount</div>
             <div className="col-sm-1">
-              <a onClick={this.addTransaction}>Add</a>
+              <a href="#" onClick={this.addTransaction}>
+                Add
+              </a>
             </div>
           </div>
         </section>

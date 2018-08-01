@@ -46,8 +46,10 @@ class TransactionRow extends React.Component<
     };
   }
 
-  toggleEdit = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  toggleEdit = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e) {
+      e.preventDefault();
+    }
     this.setState({ editing: !this.state.editing });
   };
 
@@ -111,7 +113,9 @@ class TransactionRow extends React.Component<
           />
         </div>
         <div className="col-sm-1">
-          <a onClick={this.toggleEdit}>Edit</a>
+          <a href="#" onClick={this.toggleEdit}>
+            Edit
+          </a>
           {this.state.pendingChange ? <span>Save</span> : null}
         </div>
       </div>
