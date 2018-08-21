@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-export { Transaction } from './TransactionRow';
+export { Transaction } from './model/Transaction';
 export { TransactionsProps } from './TransactionList';
 import {
   TransactionsProps,

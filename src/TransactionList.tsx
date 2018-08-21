@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './App.css';
-import { Transaction, default as TransactionRow } from './TransactionRow';
+import { default as TransactionRowView } from './TransactionRowView';
+import { Transaction } from './model/Transaction';
 import TransactionRowEdit from './TransactionRowEdit';
-export { Transaction } from './TransactionRow';
 
 export interface TransactionsProps {
   Transactions: Transaction[];
@@ -65,7 +65,7 @@ class TransactionList extends React.Component<
                   key={t.transaction.Id}
                 />
               ) : (
-                <TransactionRow
+                <TransactionRowView
                   transaction={t.transaction}
                   editing={t.editing}
                   key={t.transaction.Id}

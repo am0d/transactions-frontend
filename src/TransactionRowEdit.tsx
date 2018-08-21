@@ -1,93 +1,7 @@
 import * as React from 'react';
-import { Transaction } from './TransactionRow';
+import { Transaction } from './model/Transaction';
 import './App.css';
-
-interface EditableFieldProps<T> {
-  editing: boolean;
-  onEdit: (value: T) => void;
-}
-
-class TextFieldProps {
-  public value: string;
-}
-class TextField extends React.Component<
-  TextFieldProps & EditableFieldProps<string>
-> {
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onEdit(e.target.value);
-  };
-  render() {
-    if (this.props.editing) {
-      return (
-        <input
-          type="text"
-          value={this.props.value}
-          className="form-control"
-          onChange={this.handleChange}
-        />
-      );
-    } else {
-      return <React.Fragment>{this.props.value}</React.Fragment>;
-    }
-  }
-}
-
-class CurrencyFieldProps {
-  public value: number;
-}
-class CurrencyField extends React.Component<
-  CurrencyFieldProps & EditableFieldProps<number>
-> {
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    this.props.onEdit(value);
-  };
-  render() {
-    if (this.props.editing) {
-      return (
-        <div className="input-group">
-          <span className="input-group-addon">$</span>
-          <input
-            type="text"
-            name="Amount"
-            className="form-control"
-            value={this.props.value}
-            onChange={this.handleChange}
-          />
-        </div>
-      );
-    } else {
-      return <React.Fragment>${this.props.value.toString()}</React.Fragment>;
-    }
-  }
-}
-
-class DateFieldProps {
-  public value: Date;
-}
-
-class DateField extends React.Component<
-  DateFieldProps & EditableFieldProps<Date>
-> {
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = new Date(e.target.value);
-    this.props.onEdit(value);
-  };
-  render() {
-    if (this.props.editing) {
-      return (
-        <input
-          type="text"
-          value={this.props.value.toISOString()}
-          className="form-control"
-          onChange={this.handleChange}
-        />
-      );
-    } else {
-      return <React.Fragment>{this.props.value.toISOString()}</React.Fragment>;
-    }
-  }
-}
+import { TextField, CurrencyField, DateField } from './ui';
 
 class TransactionProps {
   public transaction: Transaction;
@@ -156,38 +70,46 @@ class TransactionRowEdit extends React.Component<
         <div className="panel panel-primary">
           <div className="panel-heading">Transaction</div>
           <div className="panel-body">
-            <form>
-              <div className="form-group">
-                <label>Store</label>
-                <TextField
-                  value={transaction.Store}
-                  editing={true}
-                  onEdit={this.setStore}
-                />
+            <form className="container">
+              <div className="col-md-3">
+                <div className="form-group">
+                  <label>Store</label>
+                  <TextField
+                    value={transaction.Store}
+                    editing={true}
+                    onEdit={this.setStore}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Category</label>
-                <TextField
-                  value={transaction.Category}
-                  editing={true}
-                  onEdit={this.setCategory}
-                />
+              <div className="col-md-3">
+                <div className="form-group">
+                  <label>Date</label>
+                  <DateField
+                    value={transaction.Date}
+                    editing={true}
+                    onEdit={this.setDate}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Amount</label>
-                <CurrencyField
-                  value={transaction.Amount}
-                  editing={true}
-                  onEdit={this.setAmount}
-                />
+              <div className="col-md-3">
+                <div className="form-group">
+                  <label>Category</label>
+                  <TextField
+                    value={transaction.Category}
+                    editing={true}
+                    onEdit={this.setCategory}
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Date</label>
-                <DateField
-                  value={transaction.Date}
-                  editing={true}
-                  onEdit={this.setDate}
-                />
+              <div className="col-md-3">
+                <div className="form-group">
+                  <label>Amount</label>
+                  <CurrencyField
+                    value={transaction.Amount}
+                    editing={true}
+                    onEdit={this.setAmount}
+                  />
+                </div>
               </div>
             </form>
           </div>

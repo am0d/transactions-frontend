@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import { Transaction } from './model/Transaction';
 
 interface EditableFieldProps<T> {
   editing: boolean;
@@ -88,26 +89,6 @@ class DateField extends React.Component<
   }
 }
 
-export class Transaction {
-  private static NewTransactionId = -1;
-  public static NewRecord(): Transaction {
-    return new Transaction(
-      Transaction.NewTransactionId--,
-      '',
-      new Date(),
-      '',
-      0
-    );
-  }
-  public constructor(
-    public Id: number,
-    public Store: string,
-    public Date: Date,
-    public Category: string,
-    public Amount: number
-  ) {}
-}
-
 class TransactionProps {
   public transaction: Transaction;
   public editing?: boolean;
@@ -119,7 +100,7 @@ class TransactionState {
   public pendingChange: boolean;
 }
 
-class TransactionRow extends React.Component<
+class TransactionRowView extends React.Component<
   TransactionProps,
   TransactionState
 > {
@@ -210,4 +191,4 @@ class TransactionRow extends React.Component<
   }
 }
 
-export default TransactionRow;
+export default TransactionRowView;
