@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Transaction } from './TransactionRow';
 import './App.css';
 
 interface EditableFieldProps<T> {
@@ -88,26 +89,6 @@ class DateField extends React.Component<
   }
 }
 
-export class Transaction {
-  private static NewTransactionId = -1;
-  public static NewRecord(): Transaction {
-    return new Transaction(
-      Transaction.NewTransactionId--,
-      '',
-      new Date(),
-      '',
-      0
-    );
-  }
-  public constructor(
-    public Id: number,
-    public Store: string,
-    public Date: Date,
-    public Category: string,
-    public Amount: number
-  ) {}
-}
-
 class TransactionProps {
   public transaction: Transaction;
   public editing?: boolean;
@@ -119,7 +100,7 @@ class TransactionState {
   public pendingChange: boolean;
 }
 
-class TransactionRow extends React.Component<
+class TransactionRowEdit extends React.Component<
   TransactionProps,
   TransactionState
 > {
@@ -142,7 +123,7 @@ class TransactionRow extends React.Component<
 
   setStore = (store: string) => {
     this.setState({
-      transaction: { ...this.state.transaction, Store: store },
+      transaction: { Store: store, ...this.state.transaction },
       pendingChange: true
     });
   };
@@ -169,45 +150,51 @@ class TransactionRow extends React.Component<
   };
 
   render() {
+    const transaction = this.state.transaction;
     return (
       <div className="row transaction">
-        <div className="col-sm-3">
-          <TextField
-            value={this.state.transaction.Store}
-            editing={this.state.editing}
-            onEdit={this.setStore}
-          />
-        </div>
-        <div className="col-sm-3">
-          <DateField
-            value={this.state.transaction.Date}
-            editing={this.state.editing}
-            onEdit={this.setDate}
-          />
-        </div>
-        <div className="col-sm-3">
-          <TextField
-            value={this.state.transaction.Category}
-            editing={this.state.editing}
-            onEdit={this.setCategory}
-          />
-        </div>
-        <div className="col-sm-2">
-          <CurrencyField
-            value={this.state.transaction.Amount}
-            editing={this.state.editing}
-            onEdit={this.setAmount}
-          />
-        </div>
-        <div className="col-sm-1">
-          <a href="#" onClick={this.toggleEdit}>
-            Edit
-          </a>
-          {this.state.pendingChange ? <span>Save</span> : null}
+        <div className="panel panel-primary">
+          <div className="panel-heading">Transaction</div>
+          <div className="panel-body">
+            <form>
+              <div className="form-group">
+                <label>Store</label>
+                <TextField
+                  value={transaction.Store}
+                  editing={true}
+                  onEdit={this.setStore}
+                />
+              </div>
+              <div className="form-group">
+                <label>Category</label>
+                <TextField
+                  value={transaction.Category}
+                  editing={true}
+                  onEdit={this.setCategory}
+                />
+              </div>
+              <div className="form-group">
+                <label>Amount</label>
+                <CurrencyField
+                  value={transaction.Amount}
+                  editing={true}
+                  onEdit={this.setAmount}
+                />
+              </div>
+              <div className="form-group">
+                <label>Date</label>
+                <DateField
+                  value={transaction.Date}
+                  editing={true}
+                  onEdit={this.setDate}
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default TransactionRow;
+export default TransactionRowEdit;

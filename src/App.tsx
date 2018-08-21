@@ -2,7 +2,10 @@ import * as React from 'react';
 import './App.css';
 export { Transaction } from './TransactionRow';
 export { TransactionsProps } from './TransactionList';
-import { TransactionsProps, default as TransactionList } from './TransactionList';
+import {
+  TransactionsProps,
+  default as TransactionList
+} from './TransactionList';
 
 const logo = require('./logo.svg');
 
@@ -15,6 +18,12 @@ class AppState {
 
   constructor() {
     this.CurrentScreen = Screen.TransactionScreen;
+  }
+}
+
+class CategoriesScreen extends React.Component<{}, {}> {
+  render() {
+    return <h3>Categories</h3>;
   }
 }
 
@@ -52,20 +61,20 @@ class App extends React.Component<TransactionsProps, AppState> {
             </div>
           </div>
         </nav>
-        <a href="#" onClick={() => this.setCurrentScreen(Screen.TransactionScreen)}>Transactions</a>
-        <a href="#" onClick={() => this.setCurrentScreen(Screen.CategoriesScreen)}>Categories</a>
-        <div className="container">
-          {this.renderCurrentScreen()}
-        </div >
+        <a
+          href="#"
+          onClick={() => this.setCurrentScreen(Screen.TransactionScreen)}
+        >
+          Transactions
+        </a>
+        <a
+          href="#"
+          onClick={() => this.setCurrentScreen(Screen.CategoriesScreen)}
+        >
+          Categories
+        </a>
+        <div className="container">{this.renderCurrentScreen()}</div>
       </div>
-    );
-  }
-}
-
-class CategoriesScreen extends React.Component<{}, {}> {
-  render() {
-    return (
-      <h3>Categories</h3>
     );
   }
 }
