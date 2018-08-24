@@ -8,6 +8,13 @@ export interface TransactionsProps {
   Transactions: Transaction[];
 }
 
+const transactions: TransactionsProps = {
+  Transactions: [
+    new Transaction(1, 'Walmart', new Date(), 'Groceries', 137.32),
+    new Transaction(2, 'Pioneer', new Date(), 'Gas', 41.11)
+  ]
+};
+
 class TransactionRowState {
   transaction: Transaction;
   editing: boolean;
@@ -16,14 +23,11 @@ class TransactionListState {
   rows: TransactionRowState[];
 }
 
-class TransactionList extends React.Component<
-  TransactionsProps,
-  TransactionListState
-> {
-  constructor(transactionsProps: TransactionsProps) {
-    super(transactionsProps);
+class TransactionList extends React.Component<{}, TransactionListState> {
+  constructor(props: {}) {
+    super(props);
     this.state = {
-      rows: transactionsProps.Transactions.map(tp => ({
+      rows: transactions.Transactions.map(tp => ({
         transaction: tp,
         editing: false
       }))
