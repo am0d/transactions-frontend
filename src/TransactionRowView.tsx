@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.css';
+import './styles/transaction.css';
 import { Transaction } from './model/Transaction';
 
 interface EditableFieldProps<T> {

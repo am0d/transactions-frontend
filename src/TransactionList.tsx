@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.css';
+import './styles/transaction.css';
 import { default as TransactionRowView } from './TransactionRowView';
 import { Transaction } from './model/Transaction';
 import TransactionRowEdit from './TransactionRowEdit';

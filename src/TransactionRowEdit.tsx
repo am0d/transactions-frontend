@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Transaction } from './model/Transaction';
-import './App.css';
+import './styles/transaction.css';
 import { TextField, CurrencyField, DateField } from './ui';
 
 class TransactionProps {
